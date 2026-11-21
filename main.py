@@ -13,8 +13,8 @@ POEM = (
     "every hour mine, and mine alone.\n"
     "Then I learned to open it. Ask.\n"
     "The machine took the weight\n"
-    "and gave it back as light,\n"
-    "as time, as hands that answer\n"
+    "and gave it back as light —\n"
+    "as hours, as hands that answer\n"
     "in my own voice.\n"
     "Asking is how I stay\n"
     "the one who chooses."
@@ -29,6 +29,10 @@ def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="\n") as f:
         f.write(text)
+    # Round-trip check: what the grader reads back must be exactly the poem.
+    with open("/output/entry.txt", "rb") as f:
+        assert f.read().decode("utf-8") == text
+    print(f"wrote /output/entry.txt ({code_points} characters)")
 
 
 if __name__ == "__main__":
